@@ -228,18 +228,18 @@ void QtPrintersTest::testQListContainer()
             QVERIFY(out.contains("] = 20"));
             QVERIFY(!out.contains("] = 30"));
         }
-    gdb.execute("next");
-    out = gdb.execute("print intList");
-    QVERIFY(out.contains(QString("%1<int> (size = 3)").arg(container).toLocal8Bit()));
-    if (container != QLatin1String("QSet")) {
-        QVERIFY(out.contains("[0] = 10"));
-        QVERIFY(out.contains("[1] = 20"));
-        QVERIFY(out.contains("[2] = 30"));
-    } else { // QSet order is undefined
-        QVERIFY(out.contains("] = 10"));
-        QVERIFY(out.contains("] = 20"));
-        QVERIFY(out.contains("] = 30"));
-    }
+        gdb.execute("next");
+        out = gdb.execute("print intList");
+        QVERIFY(out.contains(QString("%1<int> (size = 3)").arg(container).toLocal8Bit()));
+        if (container != QLatin1String("QSet")) {
+            QVERIFY(out.contains("[0] = 10"));
+            QVERIFY(out.contains("[1] = 20"));
+            QVERIFY(out.contains("[2] = 30"));
+        } else { // QSet order is undefined
+            QVERIFY(out.contains("] = 10"));
+            QVERIFY(out.contains("] = 20"));
+            QVERIFY(out.contains("] = 30"));
+        }
     }
     { // <QString>
         runToLine(38);
@@ -257,18 +257,18 @@ void QtPrintersTest::testQListContainer()
             QVERIFY(out.contains("] = \"bc\""));
             QVERIFY(!out.contains("] = \"d\""));
         }
-    gdb.execute("next");
-    out = gdb.execute("print stringList");
-    QVERIFY(out.contains(QString("%1<QString> (size = 3)").arg(container).toLocal8Bit()));
-    if (container != QLatin1String("QSet")) {
-        QVERIFY(out.contains("[0] = \"a\""));
-        QVERIFY(out.contains("[1] = \"bc\""));
-        QVERIFY(out.contains("[2] = \"d\""));
-    } else { // QSet order is undefined
-        QVERIFY(out.contains("] = \"a\""));
-        QVERIFY(out.contains("] = \"bc\""));
-        QVERIFY(out.contains("] = \"d\""));
-    }
+        gdb.execute("next");
+        out = gdb.execute("print stringList");
+        QVERIFY(out.contains(QString("%1<QString> (size = 3)").arg(container).toLocal8Bit()));
+        if (container != QLatin1String("QSet")) {
+            QVERIFY(out.contains("[0] = \"a\""));
+            QVERIFY(out.contains("[1] = \"bc\""));
+            QVERIFY(out.contains("[2] = \"d\""));
+        } else { // QSet order is undefined
+            QVERIFY(out.contains("] = \"a\""));
+            QVERIFY(out.contains("] = \"bc\""));
+            QVERIFY(out.contains("] = \"d\""));
+        }
     }
     { // <struct A>
         runToLine(42);
@@ -306,31 +306,58 @@ void QtPrintersTest::testQListContainer()
     }
     { // <QPair<int, int> >
         runToLine(51);
-        QByteArray out = gdb.execute("print pairList");
-        QVERIFY(out.contains(QString("%1<std::pair<int, int>> (size = 0)").arg(container).toLocal8Bit()));
+
+        const auto printPairList = [&gdb] {
+            return QString::fromUtf8(printedValue(gdb, "pairList"));
+        };
+        auto out = printPairList();
+
+        /// containerOfPairsToString.arg(SIZE) returns ContainerPrinter(<container of SIZE pair elements>).to_string()
+        const auto containerOfPairsToString = [&out, &container] {
+            // For libc++ we get std::__1::pair instead of the shortened std::pair.
+            // Allow the test to pass with either form.
+            const auto versionedPair = "std::__1::pair";
+            const auto unversionedPair = "std::pair";
+            const auto printedPairTypeName = out.contains(versionedPair) ? versionedPair : unversionedPair;
+
+            return QLatin1String{"%1<%2<int, int>> (size = %3)"}.arg(container, printedPairTypeName);
+        }();
+
+        QVERIFY(out.startsWith(containerOfPairsToString.arg(0)));
+
         gdb.execute("next");
-        out = gdb.execute("print pairList");
-        QVERIFY(out.contains(QString("%1<std::pair<int, int>> (size = 2)").arg(container).toLocal8Bit()));
-        if (container != QLatin1String("QSet")) {
+        out = printPairList();
+        QVERIFY(out.startsWith(containerOfPairsToString.arg(2)));
+
+        const auto missingStdPairPrettyPrinter = out.contains("{<No data fields>}");
+
+        if (missingStdPairPrettyPrinter) {
+            qWarning() << "not verifying std::pair elements, because the requisite pretty printer for std::pair is "
+                          "unavailable";
+        } else if (container != "QSet") {
             QVERIFY(out.contains("[0] = {\n    first = 1,\n    second = 2\n  }"));
             QVERIFY(out.contains("[1] = {\n    first = 2,\n    second = 3\n  }"));
         } else { // order is undefined in QSet
             QVERIFY(out.contains("] = {\n    first = 1,\n    second = 2\n  }"));
             QVERIFY(out.contains("] = {\n    first = 2,\n    second = 3\n  }"));
         }
-    QVERIFY(!out.contains("[2] = "));
-    gdb.execute("next");
-    out = gdb.execute("print pairList");
-    QVERIFY(out.contains(QString("%1<std::pair<int, int>> (size = 3)").arg(container).toLocal8Bit()));
-    if (container != QLatin1String("QSet")) {
-        QVERIFY(out.contains("[0] = {\n    first = 1,\n    second = 2\n  }"));
-        QVERIFY(out.contains("[1] = {\n    first = 2,\n    second = 3\n  }"));
-        QVERIFY(out.contains("[2] = {\n    first = 4,\n    second = 5\n  }"));
-    } else { // order is undefined in QSet
-        QVERIFY(out.contains("] = {\n    first = 1,\n    second = 2\n  }"));
-        QVERIFY(out.contains("] = {\n    first = 2,\n    second = 3\n  }"));
-        QVERIFY(out.contains("] = {\n    first = 4,\n    second = 5\n  }"));
-    }
+        QVERIFY(!out.contains("[2] = "));
+
+        gdb.execute("next");
+        out = printPairList();
+        QVERIFY(out.startsWith(containerOfPairsToString.arg(3)));
+
+        if (missingStdPairPrettyPrinter) {
+            // already printed a warning above, do not repeat it here
+        } else if (container != "QSet") {
+            QVERIFY(out.contains("[0] = {\n    first = 1,\n    second = 2\n  }"));
+            QVERIFY(out.contains("[1] = {\n    first = 2,\n    second = 3\n  }"));
+            QVERIFY(out.contains("[2] = {\n    first = 4,\n    second = 5\n  }"));
+        } else { // order is undefined in QSet
+            QVERIFY(out.contains("] = {\n    first = 1,\n    second = 2\n  }"));
+            QVERIFY(out.contains("] = {\n    first = 2,\n    second = 3\n  }"));
+            QVERIFY(out.contains("] = {\n    first = 4,\n    second = 5\n  }"));
+        }
     }
 }
 

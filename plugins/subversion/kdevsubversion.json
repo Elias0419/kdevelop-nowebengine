@@ -3,7 +3,7 @@
         "Authors": [
             {
                 "Name": "Dukju Ahn",
-                "Name[ar]": "Dukju Ahn",
+                "Name[ar]": "دوكجو آهن",
                 "Name[az]": "Dukju Ahn",
                 "Name[ca@valencia]": "Dukju Ahn",
                 "Name[ca]": "Dukju Ahn",
@@ -33,13 +33,13 @@
                 "Name[sv]": "Dukju Ahn",
                 "Name[tr]": "Dukju Ahn",
                 "Name[uk]": "Dukju Ahn",
-                "Name[x-test]": "xxDukju Ahnxx",
                 "Name[zh_CN]": "Dukju Ahn",
                 "Name[zh_TW]": "Dukju Ahn"
             }
         ],
         "Category": "Version Control",
         "Description": "This plugin integrates Subversion to KDevelop.",
+        "Description[ar]": "تكامل هذه الملحقة Subversion بمطوّرك.",
         "Description[az]": "Bu qoşma, Subversion'u KDevelop'a inteqrasiya edir.",
         "Description[ca@valencia]": "Este connector integra Subversion en KDevelop.",
         "Description[ca]": "Aquest connector integra el Subversion en el KDevelop.",
@@ -68,12 +68,12 @@
         "Description[sv]": "Insticksprogrammet integrerar Subversion i KDevelop.",
         "Description[tr]": "Bu eklenti, Subversion ile K Geliştir uygulamasını tümleştirir.",
         "Description[uk]": "Цей додаток інтегрує Subversion із KDevelop.",
-        "Description[x-test]": "xxThis plugin integrates Subversion to KDevelop.xx",
         "Description[zh_CN]": "此插件将 Subversion 整合到 KDevelop。",
         "Description[zh_TW]": "此外掛程式將 Subversion 整合進 KDevelop 內",
         "Icon": "subversion",
         "License": "GPL",
         "Name": "Subversion Support",
+        "Name[ar]": "دعم Subversion",
         "Name[az]": "Subversion dəstəyi",
         "Name[bg]": "Поддръжка на Subversion",
         "Name[ca@valencia]": "Implementació de Subversion",
@@ -110,7 +110,6 @@
         "Name[tr]": "Subversion Desteği",
         "Name[ug]": "Subversion قوللىشى",
         "Name[uk]": "Підтримка Subversion",
-        "Name[x-test]": "xxSubversion Supportxx",
         "Name[zh_CN]": "Subversion 支持",
         "Name[zh_TW]": "Subversion 支援"
     },

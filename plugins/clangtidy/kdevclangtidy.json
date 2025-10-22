@@ -3,6 +3,7 @@
         "Authors": [
             {
                 "Name": "Carlos Nihelton",
+                "Name[ar]": "Carlos Nihelton",
                 "Name[az]": "Carlos Nihelton",
                 "Name[ca@valencia]": "Carlos Nihelton",
                 "Name[ca]": "Carlos Nihelton",
@@ -31,7 +32,6 @@
                 "Name[sv]": "Carlos Nihelton",
                 "Name[tr]": "Carlos Nihelton",
                 "Name[uk]": "Carlos Nihelton",
-                "Name[x-test]": "xxCarlos Niheltonxx",
                 "Name[zh_CN]": "Carlos Nihelton",
                 "Name[zh_TW]": "Carlos Nihelton"
             },
@@ -68,13 +68,13 @@
                 "Name[sv]": "Friedrich W. H. Kossebau",
                 "Name[tr]": "Friedrich W. H. Kossebau",
                 "Name[uk]": "Friedrich W. H. Kossebau",
-                "Name[x-test]": "xxFriedrich W. H. Kossebauxx",
                 "Name[zh_CN]": "Friedrich W. H. Kossebau",
                 "Name[zh_TW]": "Friedrich W. H. Kossebau"
             }
         ],
         "Category": "Analyzers",
         "Description": "clang-tidy provides an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis. https://clang.llvm.org/extra/clang-tidy/",
+        "Description[ar]": "يوفّر clang-tidy إطارًا قابلاً للتوسيع لتشخيص أخطاء البرمجة النمطية وإصلاحها، مثل انتهاكات الأسلوب أو إساءة استخدام الواجهة أو الأخطاء التي اِستُنتجت عبر التحليل الساكن. https://clang.llvm.org/extra/clang-tidy/",
         "Description[az]": "clang-tidy üslub pozuntuları, interfeysdən sui-istifadə və ya statik analiz köməyi ilə aşkar edilə bilən səhvlər kimi tipik proqramlaşdırma səhvlərinin diaqnozu və həmin səhvlərin aradan qaldırılması üçün genişləndiriləbilən struktur təqdim edir. https://clang.llvm.org/extra/clang-tidy/",
         "Description[ca@valencia]": "clang-tidy proporciona un marc de treball extensible per al diagnòstic i esmena d'errors de programació típics, com ara infraccions de l'estil, mal ús de la interfície o errors que es poden deduir mitjançant anàlisi estàtica. https://clang.llvm.org/extra/clang-tidy/",
         "Description[ca]": "El clang-tidy proporciona un marc de treball extensible per al diagnòstic i esmena d'errors de programació típics, com ara infraccions de l'estil, mal ús de la interfície o errors que es poden deduir mitjançant anàlisi estàtica. https://clang.llvm.org/extra/clang-tidy/",
@@ -102,11 +102,11 @@
         "Description[sv]": "Clang-Tidy tillhandahåller ett utvidgningsbart ramverk för att diagnosticera och rätta typiska programmeringsfel, som stilöverträdelser, gränssnittsmissbruk eller fel som kan härledas via statisk analys. https://clang.llvm.org/extra/clang-tidy/",
         "Description[tr]": "clang-tidy, biçem ve arayüz yanlış kullanımları veya durgun çözümleme ile bulunabilecek tipik programlama hatalarını tanılamak ve düzeltmek için geniş bir çatı sağlar. https://clang.llvm.org/extra/clang-tidy/",
         "Description[uk]": "clang-tidy — розширена оболонка діагностування та виправлення типових помилок у програмах, зокрема порушень стилю, помилкового використання інтерфейсу та вад, які можна виявити за допомогою статичного аналізу. https://clang.llvm.org/extra/clang-tidy/",
-        "Description[x-test]": "xxclang-tidy provides an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis. https://clang.llvm.org/extra/clang-tidy/xx",
         "Description[zh_CN]": "clang-tidy 提供了一个可扩展的框架，用于诊断和修复典型的编程错误，例如样式违规，接口滥用或可以通过静态分析推断出的错误。https://clang.llvm.org/extra/clang-tidy/",
         "Icon": "dialog-ok",
         "License": "GPL",
         "Name": "Clang-Tidy Support",
+        "Name[ar]": "دعم Clang-Tidy",
         "Name[az]": "Clang-Tidy dəstəyi",
         "Name[ca@valencia]": "Implementació de Clang-Tidy",
         "Name[ca]": "Implementació de Clang-Tidy",
@@ -135,7 +135,6 @@
         "Name[sv]": "Clang-Tidy-stöd",
         "Name[tr]": "Clang-Tidy Desteği",
         "Name[uk]": "Підтримка Clang-Tidy",
-        "Name[x-test]": "xxClang-Tidy Supportxx",
         "Name[zh_CN]": "Clang-Tidy 支持",
         "Name[zh_TW]": "Clang-Tidy 支援",
         "Version": "0.3.3"

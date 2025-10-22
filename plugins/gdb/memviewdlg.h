@@ -23,6 +23,8 @@ namespace KDevelop {
 class IDebugSession;
 }
 
+class QMenu;
+class QPoint;
 class QToolBox;
 
 
@@ -58,34 +60,28 @@ namespace GDB
     public:
         explicit MemoryView(QWidget* parent);
 
-        void debuggerStateChanged(DBGStateFlags state);
-
     Q_SIGNALS:
         void captionChanged(const QString& caption);
 
-    private: // Callbacks
+    private:
         void sizeComputed(const QString& value);
-
+        void addReadMemoryCommand(const QString& arguments);
         void memoryRead(const MI::ResultRecord& r);
 
-        // Returns true is we successfully created the memoryView, and
-        // can work.
-        bool isOk() const;
-
-    private Q_SLOTS:
         void memoryEdited(int start, int end);
         /** Informs the view about changes in debugger state.
          *  Allows view to disable itself when debugger is not running. */
-        void slotStateChanged(DBGStateFlags oldState, DBGStateFlags newState);
+        void debuggerStateChanged(DBGStateFlags state);
 
         /** Invoked when user has changed memory range.
             Gets memory for the new range. */
-        void slotChangeMemoryRange();
-        void slotHideRangeDialog();
-        void slotEnableOrDisable();
+        void changeMemoryRange();
+        void hideRangeDialog();
+        void enableOrDisable();
 
-    private: // QWidget overrides
+        void memoryViewContextMenuRequested(const QPoint& viewportPosition);
         void contextMenuEvent(QContextMenuEvent* e) override;
+        void addActionsAndShowContextMenu(QMenu* menu, const QPoint& globalPosition);
 
         void initWidget();
 
@@ -96,9 +92,8 @@ namespace GDB
         quintptr m_memStart;
         QString m_memStartStr, m_memAmountStr;
         QByteArray m_memData;
-        int m_debuggerState;
+        bool m_appHasStarted = false;
 
-    private Q_SLOTS:
         void currentSessionChanged(KDevelop::IDebugSession* session);
     };
 

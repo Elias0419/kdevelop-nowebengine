@@ -5,6 +5,7 @@
             {
                 "Email": "hein@kde.org",
                 "Name": "Eike Hein",
+                "Name[ar]": "إيكي هين",
                 "Name[ca@valencia]": "Eike Hein",
                 "Name[ca]": "Eike Hein",
                 "Name[cs]": "Eike Hein",
@@ -27,7 +28,6 @@
                 "Name[sv]": "Eike Hein",
                 "Name[tr]": "Eike Hein",
                 "Name[uk]": "Eike Hein",
-                "Name[x-test]": "xxEike Heinxx",
                 "Name[zh_CN]": "Eike Hein",
                 "Name[zh_TW]": "Eike Hein"
             }
@@ -35,6 +35,7 @@
         "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=kdevelop&component=Plasma%20Sessions%20Applet",
         "Category": "Utilities",
         "Description": "List and launch KDevelop sessions",
+        "Description[ar]": "سرد وافتح جلسات مطوّرك",
         "Description[ca@valencia]": "Llista i inicia sessions de KDevelop",
         "Description[ca]": "Llista i llança sessions del KDevelop",
         "Description[cs]": "Vypsat a spustit sezení KDevelop",
@@ -56,7 +57,6 @@
         "Description[sv]": "Lista och starta KDevelop-sessioner",
         "Description[tr]": "K Geliştir oturumlarını listeleyin ve başlatın",
         "Description[uk]": "Показ списку і запуск сеансів KDevelop",
-        "Description[x-test]": "xxList and launch KDevelop sessionsxx",
         "Description[zh_CN]": "列出并启动 KDevelop 会话",
         "Description[zh_TW]": "列出並啟動 KDevelop 工作階段",
         "FormFactors": [
@@ -66,6 +66,7 @@
         "Id": "org.kde.kdevelopsessions",
         "License": "GPL-2.0+",
         "Name": "KDevelop Sessions",
+        "Name[ar]": "جلسات مطوّرك",
         "Name[ca@valencia]": "Sessions de KDevelop",
         "Name[ca]": "Sessions del KDevelop",
         "Name[cs]": "Sezení KDevelop",
@@ -87,7 +88,6 @@
         "Name[sv]": "KDevelop-sessioner",
         "Name[tr]": "K Geliştir Oturumları",
         "Name[uk]": "Сеанси KDevelop",
-        "Name[x-test]": "xxKDevelop Sessionsxx",
         "Name[zh_CN]": "KDevelop 会话",
         "Name[zh_TW]": "KDevelop 工作階段",
         "Version": "0.1",

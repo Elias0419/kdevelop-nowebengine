@@ -16,9 +16,7 @@
 #include <KSharedConfig>
 
 #include <QObject>
-#include <QPointer>
 #include <QString>
-#include <QElapsedTimer>
 #include <QUrl>
 
 namespace KDevelop {
@@ -71,20 +69,23 @@ class QSignalSpy;
 #define STEP_OUT_AND_WAIT_FOR_PAUSED_STATE(session, sessionSpy)                                                        \
     RUN_AND_WAIT_FOR_PAUSED_STATE(session, sessionSpy, KDevMI::Testing::RunMode::StepOut)
 
+#define STEP_OVER_AND_WAIT_FOR_PAUSED_STATE(session, sessionSpy)                                                       \
+    RUN_AND_WAIT_FOR_PAUSED_STATE(session, sessionSpy, KDevMI::Testing::RunMode::StepOver)
+
 #define WAIT_FOR_A_WHILE(session, ms)                                                                                  \
     do {                                                                                                               \
         if (!KDevMI::Testing::waitForAWhile((session), (ms), __FILE__, __LINE__))                                      \
             return;                                                                                                    \
     } while (false)
 
-#define WAIT_FOR(session, condition) \
-    do { \
-        KDevMI::Testing::TestWaiter w((session), #condition, __FILE__, __LINE__); \
-        while (w.waitUnless((condition))) /* nothing */ ; \
-    } while(0)
-
 #define COMPARE_DATA(index, expected) \
     do { if (!KDevMI::Testing::compareData((index), (expected), __FILE__, __LINE__)) return; } while (0)
+
+#define VALIDATE_COLUMN_COUNTS_THREAD_COUNT_AND_STACK_FRAME_NUMBERS(threadIndex, expectedThreadCount)                  \
+    do {                                                                                                               \
+        KDevMI::Testing::validateColumnCountsThreadCountAndStackFrameNumbers(threadIndex, expectedThreadCount);        \
+        RETURN_IF_TEST_FAILED();                                                                                       \
+    } while (false)
 
 #define SKIP_IF_ATTACH_FORBIDDEN() \
     do { \
@@ -110,9 +111,13 @@ int currentMiLine(const KDevelop::IDebugSession* session);
 
 bool compareData(const QModelIndex& index, const QString& expected, const char* file, int line, bool useRE = false);
 
-/// Verify that a given thread index's frame stack model has 3 columns, an expected number of threads
-/// and returns correct stack frame numbers (at column=0) for the thread index (as the parent index).
-/// Check success with RETURN_IF_TEST_FAILED().
+/**
+ * Verify that a given thread index's frame stack model has 3 columns, an expected number of threads
+ * and returns correct stack frame numbers (at column=0) for the thread index (as the parent index).
+ *
+ * Call RETURN_IF_TEST_FAILED() after this function or use the wrapper macro
+ * VALIDATE_COLUMN_COUNTS_THREAD_COUNT_AND_STACK_FRAME_NUMBERS() instead.
+ */
 void validateColumnCountsThreadCountAndStackFrameNumbers(const QModelIndex& threadIndex, int expectedThreadCount);
 
 /**
@@ -150,6 +155,7 @@ enum class RunMode {
     Continue,
     StepInto,
     StepOut,
+    StepOver
 };
 
 /**
@@ -171,21 +177,6 @@ bool waitForState(MIDebugSession* session, KDevelop::IDebugSession::DebuggerStat
 
 bool waitForAWhile(MIDebugSession* session, int ms, const char* file, int line);
 
-class TestWaiter
-{
-public:
-    TestWaiter(MIDebugSession* session_, const char* condition_, const char* file_, int line_);
-
-    bool waitUnless(bool ok);
-
-private:
-    QElapsedTimer stopWatch;
-    QPointer<MIDebugSession> session;
-    const char* condition;
-    const char* file;
-    int line;
-};
-
 class TestLaunchConfiguration : public KDevelop::ILaunchConfiguration
 {
 public:
@@ -205,6 +196,42 @@ public:
 private:
     KConfigGroup cfg;
     KSharedConfigPtr c;
+};
+
+class ITestFrameStackModel
+{
+public:
+    [[nodiscard]] virtual int fetchFramesCallCount() const = 0;
+
+protected:
+    ITestFrameStackModel() = default;
+    Q_DISABLE_COPY_MOVE(ITestFrameStackModel)
+    ~ITestFrameStackModel() = default;
+};
+
+template<class DebugSession, class BaseFrameStackModel>
+class TestFrameStackModel : public BaseFrameStackModel, public ITestFrameStackModel
+{
+public:
+    explicit TestFrameStackModel(DebugSession* session)
+        : BaseFrameStackModel(session)
+    {
+    }
+
+    [[nodiscard]] int fetchFramesCallCount() const override
+    {
+        return m_fetchFramesCallCount;
+    }
+
+protected:
+    void fetchFrames(int threadNumber, int from, int to) override
+    {
+        ++m_fetchFramesCallCount;
+        BaseFrameStackModel::fetchFrames(threadNumber, from, to);
+    }
+
+private:
+    int m_fetchFramesCallCount = 0;
 };
 
 /**

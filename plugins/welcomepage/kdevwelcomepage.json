@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Provides the welcome page visible in an empty session",
+        "Description[ar]": "وفّر صفحة الترحيب المرئيّة في جلسة فارغة",
         "Description[az]": "Bo sessiyada salamlama səhifəsinin görünə bilməsini təmin edir",
         "Description[ca@valencia]": "Proporciona la visibilitat de la pàgina de benvinguda en una sessió buida",
         "Description[ca]": "Proporciona la visibilitat de la pàgina de benvinguda en una sessió buida",
@@ -29,7 +30,6 @@
         "Description[sv]": "Tillhandahåller välkomstsidan synlig i en tom session",
         "Description[tr]": "Boş oturumlarda görünen karşılama sayfasını sağlar",
         "Description[uk]": "Забезпечує роботу сторінки вітання, яку програма показує, якщо сеанс порожній",
-        "Description[x-test]": "xxProvides the welcome page visible in an empty sessionxx",
         "Description[zh_CN]": "提供空白会话的欢迎页",
         "Description[zh_TW]": "提供空白工作階段所顯示的歡迎頁面",
         "Icon": "kdevelop",
@@ -65,7 +65,6 @@
         "Name[sv]": "KDevelop välkomstsida",
         "Name[tr]": "K Geliştir Karşılama Sayfası",
         "Name[uk]": "Сторінка вітання KDevelop",
-        "Name[x-test]": "xxKDevelop Welcome Pagexx",
         "Name[zh_CN]": "KDevelop 欢迎页面",
         "Name[zh_TW]": "KDevelop 歡迎頁面"
     },

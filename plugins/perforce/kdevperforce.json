@@ -3,6 +3,7 @@
         "Authors": [
             {
                 "Name": "Morten Danielsen Volden",
+                "Name[ar]": "Morten Danielsen Volden",
                 "Name[az]": "Morten Danielsen Volden",
                 "Name[ca@valencia]": "Morten Danielsen Volden",
                 "Name[ca]": "Morten Danielsen Volden",
@@ -32,13 +33,13 @@
                 "Name[sv]": "Morten Danielsen Volden",
                 "Name[tr]": "Morten Danielsen Volden",
                 "Name[uk]": "Morten Danielsen Volden",
-                "Name[x-test]": "xxMorten Danielsen Voldenxx",
                 "Name[zh_CN]": "Morten Danielsen Volden",
                 "Name[zh_TW]": "Morten Danielsen Volden"
             }
         ],
         "Category": "Version Control",
         "Description": "Provides Integration with Perforce Version Control System",
+        "Description[ar]": "وفّر التّكامل مع نظام تحكّم في الإصدارات Perforce",
         "Description[az]": "Perforce ilə Versiyaya Nəzarət Sisteminin inteqrasiyasını təmin edir",
         "Description[ca@valencia]": "Proporciona integració amb el sistema de control de versions Perforce",
         "Description[ca]": "Proporciona integració amb el sistema de control de versions Perforce",
@@ -67,12 +68,12 @@
         "Description[sv]": "Tillhandahåller integrering med Perforce versionskontrollsystem",
         "Description[tr]": "Perforce Sürüm Denetimi Sistemi ile Tümleştirme Sağlar",
         "Description[uk]": "Забезпечує інтеграцію з системою керування версіями Perforce",
-        "Description[x-test]": "xxProvides Integration with Perforce Version Control Systemxx",
         "Description[zh_CN]": "提供与 Perforce 版本控制系统的整合",
         "Description[zh_TW]": "提供與 Perforce 版本控制系統的整合",
         "Icon": "kdevelop",
         "License": "GPL",
         "Name": "Perforce Support",
+        "Name[ar]": "دعم Perforce",
         "Name[az]": "Perforce dəstəyi",
         "Name[ca@valencia]": "Implementació de Perforce",
         "Name[ca]": "Implementació del Perforce",
@@ -101,7 +102,6 @@
         "Name[sv]": "Perforce-stöd",
         "Name[tr]": "Perforce Desteği",
         "Name[uk]": "Підтримка Perforce",
-        "Name[x-test]": "xxPerforce Supportxx",
         "Name[zh_CN]": "Perforce 支持",
         "Name[zh_TW]": "Perforce 支援",
         "Version": "5.0"

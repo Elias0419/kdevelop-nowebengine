@@ -14,7 +14,6 @@
 
 #include <KConfigGroup>
 #include <KLocalizedString>
-#include <KShell>
 #include <KSharedConfig>
 
 #include <interfaces/ilaunchconfiguration.h>
@@ -74,6 +73,14 @@ NativeAppJob::NativeAppJob(QObject* parent, KDevelop::ILaunchConfiguration* cfg)
         return;
     }
 
+    QStringList terminal;
+    if (iface->useTerminal(cfg)) {
+        terminal = iface->terminal(cfg, err);
+        if (detectError(-3)) {
+            return;
+        }
+    }
+
     const auto launchConfigurationName = m_name;
     {
         const auto cfgGroup = cfg->config();
@@ -103,17 +110,11 @@ NativeAppJob::NativeAppJob(QObject* parent, KDevelop::ILaunchConfiguration* cfg)
 
     qCDebug(PLUGIN_EXECUTE) << "setting app:" << executable << arguments;
 
-    if (iface->useTerminal(cfg)) {
-        QString terminalCommand = iface->terminal(cfg);
-        terminalCommand.replace(QLatin1String("%exe"), KShell::quoteArg(executable));
-        terminalCommand.replace(QLatin1String("%workdir"), KShell::quoteArg( wc.toLocalFile()) );
-        QStringList args = KShell::splitArgs(terminalCommand);
-        args.append( arguments );
-        *this << args;
-    } else {
-        *this << executable;
-        *this << arguments;
+    if (!terminal.empty()) {
+        *this << std::move(terminal);
     }
+    *this << executable;
+    *this << arguments;
 
     setJobName(m_name);
 }

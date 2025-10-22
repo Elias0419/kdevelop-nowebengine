@@ -3,7 +3,7 @@
         "Authors": [
             {
                 "Name": "Aleix Pol",
-                "Name[ar]": "Aleix Pol",
+                "Name[ar]": "ألكس بول",
                 "Name[az]": "Aleix Pol",
                 "Name[ca@valencia]": "Aleix Pol",
                 "Name[ca]": "Aleix Pol",
@@ -34,13 +34,13 @@
                 "Name[sv]": "Aleix Pol",
                 "Name[tr]": "Aleix Pol",
                 "Name[uk]": "Aleix Pol",
-                "Name[x-test]": "xxAleix Polxx",
                 "Name[zh_CN]": "Aleix Pol",
                 "Name[zh_TW]": "Aleix Pol"
             }
         ],
         "Category": "Documentation",
         "Description": "This plugin provides QtHelp integration",
+        "Description[ar]": "توفّر هذه الملحقة تكامل QtHelp",
         "Description[az]": "Bu qoşma, QtHelp inteqrasiyasını təmin edir",
         "Description[ca@valencia]": "Este connector proveïx la integració amb QtHelp",
         "Description[ca]": "Aquest connector proveeix la integració amb QtHelp",
@@ -68,7 +68,6 @@
         "Description[sv]": "Insticksprogrammet tillhandahåller integrering av QtHelp",
         "Description[tr]": "Bu eklenti, QtHelp tümleştirmesi sağlar",
         "Description[uk]": "За допомогою цього додатка здійснюється інтеграція з QtHelp",
-        "Description[x-test]": "xxThis plugin provides QtHelp integrationxx",
         "Description[zh_CN]": "此插件提供了 QtHelp 整合",
         "Description[zh_TW]": "這個外掛程式提供 QtHelp 整合",
         "Icon": "qtlogo",
@@ -104,7 +103,6 @@
         "Name[sv]": "Qt-dokumentation",
         "Name[tr]": "Qt Belgelendirmesi",
         "Name[uk]": "Документація з Qt",
-        "Name[x-test]": "xxQt Documentationxx",
         "Name[zh_CN]": "Qt 文档",
         "Name[zh_TW]": "Qt 說明文件"
     },

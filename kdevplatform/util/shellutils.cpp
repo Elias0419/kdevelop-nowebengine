@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2012 Ivan Shapovalov <intelfx100@gmail.com>
+    SPDX-FileCopyrightText: 2024, 2025 Igor Kushnir <igorkuo@gmail.com>
 
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
@@ -9,6 +10,7 @@
 #include <debug.h>
 
 #include <interfaces/icore.h>
+#include <interfaces/ilaunchconfiguration.h>
 #include <interfaces/iuicontroller.h>
 
 #include <KConfigGroup>
@@ -16,11 +18,13 @@
 #include <KMessageBox>
 #include <KParts/MainWindow>
 #include <KSharedConfig>
+#include <KShell>
 
 #include <QEvent>
 #include <QFile>
 #include <QGuiApplication>
 #include <QList>
+#include <QMenu>
 #include <QTextStream>
 #include <QUrl>
 #include <QWidget>
@@ -200,6 +204,117 @@ bool restoreAndAutoSaveGeometry(QWidget& widget, const QString& configGroupName,
     const auto* const saver = new WidgetGeometrySaver(widget, configGroupName, configSubgroupName);
     return saver->restoreWidgetGeometry();
 }
+
+void prepareStandardContextMenuToAddingCustomActions(QMenu*& standardContextMenu, QWidget* menuParent)
+{
+    if (!standardContextMenu) {
+        standardContextMenu = new QMenu(menuParent);
+    } else if (!standardContextMenu->isEmpty()) {
+        standardContextMenu->addSeparator();
+    }
 }
+
+/// This macro is used to deduplicate while avoiding evaluating arguments if the warning debug output is disabled.
+#define ENTRY_NAME_FOR_LAUNCH_CONFIGURATION                                                                            \
+    entryName.untranslatable << "for the launch configuration" << launchConfiguration.name()
+
+QStringList splitLaunchConfigurationEntry(const ILaunchConfiguration& launchConfiguration, const QString& entryText,
+                                          const LaunchConfigurationEntryName& entryName, QString& errorMessage)
+{
+    KShell::Errors errorCode;
+    auto ret = KShell::splitArgs(entryText, KShell::TildeExpand | KShell::AbortOnMeta, &errorCode);
+
+    switch (errorCode) {
+    case KShell::NoError:
+        return ret;
+    case KShell::BadQuoting:
+        errorMessage = i18nc("%1 - entry name, e.g. 'arguments' or 'executable path'; %2 - launch configuration name",
+                             "There is a quoting error in the %1 for the launch configuration '%2'. Aborting start.",
+                             entryName.translatable, launchConfiguration.name());
+        qCWarning(UTIL) << "quoting error in the" << ENTRY_NAME_FOR_LAUNCH_CONFIGURATION;
+        return {};
+    case KShell::FoundMeta:
+        errorMessage = i18nc("%1 - entry name, e.g. 'arguments' or 'executable path'; %2 - launch configuration name",
+                             "A shell meta character was included in the %1 for the launch configuration '%2', "
+                             "this is not supported currently. Aborting start.",
+                             entryName.translatable, launchConfiguration.name());
+        qCWarning(UTIL) << "shell meta character in the" << ENTRY_NAME_FOR_LAUNCH_CONFIGURATION;
+        return {};
+    }
+
+    errorMessage =
+        i18nc("%1 - entry name, e.g. 'arguments' or 'executable path'; %2 - error code; %3 - launch configuration name",
+              "KShell::splitArgs(<the %1>) reported an unknown error code %2 "
+              "for the launch configuration '%3'. Aborting start.",
+              entryName.translatable, errorCode, launchConfiguration.name());
+    qCWarning(UTIL) << "unknown error code" << errorCode << "reported for the" << ENTRY_NAME_FOR_LAUNCH_CONFIGURATION;
+    return {};
+}
+
+static QStringList splitLaunchConfigurationEntryToNonemptyList(const ILaunchConfiguration& launchConfiguration,
+                                                               const QString& entryText,
+                                                               const LaunchConfigurationEntryName& entryName,
+                                                               QString& errorMessage)
+{
+    // Do not pass errorMessage to splitLaunchConfigurationEntry(), because it may be nonempty from the beginning.
+    QString initiallyEmptyErrorMessage;
+    auto ret = splitLaunchConfigurationEntry(launchConfiguration, entryText, entryName, initiallyEmptyErrorMessage);
+
+    if (!initiallyEmptyErrorMessage.isEmpty()) {
+        // Assign to errorMessage only a nonempty value so as to avoid touching
+        // it in the absence of an error, and thus conform to the documentation.
+        errorMessage = std::move(initiallyEmptyErrorMessage);
+        return ret;
+    }
+
+    if (ret.empty()) {
+        // No prior error but the result of the splitting is empty. Report this as an error.
+        errorMessage = i18nc(
+            "%1 - entry name, e.g. 'executable path' or 'external terminal command'; %2 - launch configuration name",
+            "Splitting the %1 for the launch configuration '%2' yields an empty list. Aborting start.",
+            entryName.translatable, launchConfiguration.name());
+        qCWarning(UTIL) << "empty result of splitting the" << ENTRY_NAME_FOR_LAUNCH_CONFIGURATION;
+        return {};
+    }
+
+    return ret;
+}
+
+QStringList splitNonemptyLaunchConfigurationEntry(const ILaunchConfiguration& launchConfiguration,
+                                                  const QString& entryText,
+                                                  const LaunchConfigurationEntryName& entryName, QString& errorMessage)
+{
+    if (entryText.isEmpty()) {
+        errorMessage = i18nc(
+            "%1 - entry name, e.g. 'external terminal command' or 'interpreter command'; "
+            "%2 - launch configuration name",
+            "Empty %1 specified for the launch configuration '%2'. Aborting start.", entryName.translatable,
+            launchConfiguration.name());
+        qCWarning(UTIL) << "empty" << ENTRY_NAME_FOR_LAUNCH_CONFIGURATION;
+        return {};
+    }
+
+    return splitLaunchConfigurationEntryToNonemptyList(launchConfiguration, entryText, entryName, errorMessage);
+}
+
+QStringList splitLocalFileLaunchConfigurationEntry(const ILaunchConfiguration& launchConfiguration,
+                                                   const QUrl& entryUrl, const LaunchConfigurationEntryName& entryName,
+                                                   QString& errorMessage)
+{
+    if (entryUrl.isEmpty() || !entryUrl.isLocalFile()) {
+        errorMessage = i18nc("%1 - entry name, e.g. 'executable path' or 'script path'; %2 - launch configuration name",
+                             "No valid %1 specified for the launch configuration '%2'. Aborting start.",
+                             entryName.translatable, launchConfiguration.name());
+        qCWarning(UTIL) << "invalid or empty" << ENTRY_NAME_FOR_LAUNCH_CONFIGURATION;
+        return {};
+    }
+
+    return splitLaunchConfigurationEntryToNonemptyList(launchConfiguration, entryUrl.toLocalFile(), entryName,
+                                                       errorMessage);
+}
+
+#undef ENTRY_NAME_FOR_LAUNCH_CONFIGURATION
+
+} // namespace KDevelop
 
 #include "shellutils.moc"

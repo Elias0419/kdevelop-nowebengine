@@ -1,5 +1,6 @@
 [General]
 Name=Widget (pimpl) with a UI File
+Name[ar]=ويدجت (pimpl) مع ملفّ واجهة مستخدم
 Name[az]=İİ faylı ilə vidjet (pimp)
 Name[ca]=Giny (pimpl) amb un fitxer IU
 Name[ca@valencia]=Giny (pimpl) amb un fitxer IU
@@ -27,10 +28,10 @@ Name[sl]=Gradnik (pimpl) z datoteko uporabniškega vmesnika
 Name[sv]=Grafisk komponent (pimpl) med en UI-fil
 Name[tr]=Kullanıcı arayüzü dosyasıyla araç takımı (pimpl)
 Name[uk]=Віджет (pimpl) із файлом UI
-Name[x-test]=xxWidget (pimpl) with a UI Filexx
 Name[zh_CN]=使用 UI 文件的部件 (pimpl)
 Name[zh_TW]=有 UI 檔的元件 (pimpl)
 Comment=QWidget subclass with a separate Qt Designer file and private implementation
+Comment[ar]=صنف فرعي لـ QWidget مع ملفّ Qt Designer منفصل وتنفيذ خاصّ
 Comment[az]=Ayrıca Qt Designer faylı və xüsusi tətbiqetmə ilə QWidget alt sinifi
 Comment[ca]=Subclasse QWidget amb un fitxer separat del Qt Designer i una implementació privada
 Comment[ca@valencia]=Subclasse QWidget amb un fitxer separat de Qt Designer i una implementació privada
@@ -58,11 +59,11 @@ Comment[sl]=Pod-razred QWidget z ločeno datoteko Qt Designer-ja in zasebno izve
 Comment[sv]=QWidget-delklass med en separat Qt Designer-fil och privat implementering
 Comment[tr]=Ayrı bir Qt Designer dosyası ve özel gerçekleme ile QWidget alt sınıfı
 Comment[uk]=Підклас QWidget із окремим файлом Qt Designer і закритою (private) реалізацією
-Comment[x-test]=xxQWidget subclass with a separate Qt Designer file and private implementationxx
 Comment[zh_CN]=包含一个独立的 Qt Designer 文件和私有实现的 QWidget 子类
 Comment[zh_TW]=QWidget 子類別，有分開的《Qt 設計師》檔和私人實作
 Category=C++/Qt
 Language=C++
+Language[ar]=سي++
 Language[az]=C++
 Language[bs]=C++
 Language[ca]=C++
@@ -104,7 +105,6 @@ Language[sv]=C++
 Language[tr]=C++
 Language[ug]=C++
 Language[uk]=C++
-Language[x-test]=xxC++xx
 Language[zh_CN]=C++
 Language[zh_TW]=C++
 Type=Class
@@ -113,6 +113,7 @@ Files=Header,PrivateHeader,Implementation,UI
 
 [Header]
 Name=Public Header
+Name[ar]=ترويسة عامّة
 Name[az]=Açıq başlıq
 Name[bs]=Javno zaglavlje
 Name[ca]=Capçalera pública
@@ -145,7 +146,6 @@ Name[sl]=Javna glava
 Name[sv]=Public-deklaration
 Name[tr]=Genel Üstbilgi
 Name[uk]=Відкритий (public) заголовок
-Name[x-test]=xxPublic Headerxx
 Name[zh_CN]=公有头文件
 Name[zh_TW]=公開標頭
 File=class.h
@@ -153,6 +153,7 @@ OutputFile={{ name }}.h
 
 [PrivateHeader]
 Name=Private Header
+Name[ar]=ترويسة خاصّة
 Name[az]=Gizli başlıq
 Name[bs]=Privatno zaglavlje
 Name[ca]=Capçalera privada
@@ -185,7 +186,6 @@ Name[sl]=Zasebna glava
 Name[sv]=Privat deklaration
 Name[tr]=Özel Üstbilgi
 Name[uk]=Закритий (private) заголовок
-Name[x-test]=xxPrivate Headerxx
 Name[zh_CN]=私有头文件
 Name[zh_TW]=私密標頭
 File=class_p.h
@@ -193,6 +193,7 @@ OutputFile={{ name }}_p.h
 
 [Implementation]
 Name=Implementation
+Name[ar]=التنفيذ
 Name[az]=Tətbiq olunma
 Name[bs]=Implementacija
 Name[ca]=Implementació
@@ -229,7 +230,6 @@ Name[sv]=Implementering
 Name[tr]=Gerçekleme
 Name[ug]=ئەمەلگە ئاشۇرۇش
 Name[uk]=Реалізація
-Name[x-test]=xxImplementationxx
 Name[zh_CN]=接口
 Name[zh_TW]=實作
 File=class.cpp
@@ -237,6 +237,7 @@ OutputFile={{ name }}.cpp
 
 [UI]
 Name=User Interface
+Name[ar]=واجهة المستخدم
 Name[az]=İstifaddəçi İnterfeysi
 Name[bg]=Потребителски интерфейс
 Name[bs]=Korisnički interfejs
@@ -279,7 +280,6 @@ Name[sv]=Användargränssnitt
 Name[tr]=Kullanıcı Arayüzü
 Name[ug]=كۆرۈنمەيۈز
 Name[uk]=Інтерфейс користувача
-Name[x-test]=xxUser Interfacexx
 Name[zh_CN]=用户界面
 Name[zh_TW]=使用者介面
 File=class.ui

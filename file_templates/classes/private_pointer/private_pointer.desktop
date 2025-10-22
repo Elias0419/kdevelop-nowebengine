@@ -1,5 +1,6 @@
 [General]
 Name=Private Pointer
+Name[ar]=مؤشّر خاصّ
 Name[az]=Gizli göstərici
 Name[bs]=Privatni pokazivač
 Name[ca]=Punter privat
@@ -32,10 +33,10 @@ Name[sl]=Zasebni kazalec
 Name[sv]=Privat pekare
 Name[tr]=Özel İşaretçi
 Name[uk]=Закритий (private) вказівник
-Name[x-test]=xxPrivate Pointerxx
 Name[zh_CN]=私有指针
 Name[zh_TW]=私密指標
 Comment=C++ Class with a private D-pointer
+Comment[ar]=صنف سي++ مع مؤشّر D خاصّ
 Comment[az]=Bir gizli D-göstəricisi ilə C++ Class
 Comment[bs]=C++ klasa s privatnim D-pokazivačem
 Comment[ca]=Classe C++ amb un punter-D privat
@@ -68,11 +69,11 @@ Comment[sl]=Razred C++ z zasebnim kazalcem D
 Comment[sv]=C++ klass med en privat D-pekare
 Comment[tr]=Özel bir D işaretçili C++ Sınıfı
 Comment[uk]=Клас C++ з закритим (private) D-вказівником
-Comment[x-test]=xxC++ Class with a private D-pointerxx
 Comment[zh_CN]=带有一个私有 D-指针的 C++ 类
 Comment[zh_TW]=C++ 類別，含私密指標
 Category=C++/Basic
 Language=C++
+Language[ar]=سي++
 Language[az]=C++
 Language[bs]=C++
 Language[ca]=C++
@@ -114,7 +115,6 @@ Language[sv]=C++
 Language[tr]=C++
 Language[ug]=C++
 Language[uk]=C++
-Language[x-test]=xxC++xx
 Language[zh_CN]=C++
 Language[zh_TW]=C++
 Type=Class
@@ -123,6 +123,7 @@ OptionsFile=options.kcfg
 
 [Header]
 Name=Public Header
+Name[ar]=ترويسة عامّة
 Name[az]=Açıq başlıq
 Name[bs]=Javno zaglavlje
 Name[ca]=Capçalera pública
@@ -155,7 +156,6 @@ Name[sl]=Javna glava
 Name[sv]=Public-deklaration
 Name[tr]=Genel Üstbilgi
 Name[uk]=Відкритий (public) заголовок
-Name[x-test]=xxPublic Headerxx
 Name[zh_CN]=公有头文件
 Name[zh_TW]=公開標頭
 File=class.h
@@ -163,6 +163,7 @@ OutputFile={{ name }}.h
 
 [PrivateHeader]
 Name=Private Header
+Name[ar]=ترويسة خاصّة
 Name[az]=Gizli başlıq
 Name[bs]=Privatno zaglavlje
 Name[ca]=Capçalera privada
@@ -195,7 +196,6 @@ Name[sl]=Zasebna glava
 Name[sv]=Privat deklaration
 Name[tr]=Özel Üstbilgi
 Name[uk]=Закритий (private) заголовок
-Name[x-test]=xxPrivate Headerxx
 Name[zh_CN]=私有头文件
 Name[zh_TW]=私密標頭
 File=class_p.h
@@ -203,6 +203,7 @@ OutputFile={{ name }}_p.h
 
 [Implementation]
 Name=Implementation
+Name[ar]=التنفيذ
 Name[az]=Tətbiq olunma
 Name[bs]=Implementacija
 Name[ca]=Implementació
@@ -239,7 +240,6 @@ Name[sv]=Implementering
 Name[tr]=Gerçekleme
 Name[ug]=ئەمەلگە ئاشۇرۇش
 Name[uk]=Реалізація
-Name[x-test]=xxImplementationxx
 Name[zh_CN]=接口
 Name[zh_TW]=實作
 File=class.cpp

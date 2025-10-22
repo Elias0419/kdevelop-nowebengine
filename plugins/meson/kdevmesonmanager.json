@@ -2,6 +2,7 @@
     "KPlugin": {
         "Category": "Project Management",
         "Description": "Imports and edits Meson projects",
+        "Description[ar]": "استورد وعدّل مشاريع Meson",
         "Description[az]": "Meson layihələrini idxal edir və onlara düzəliş edir",
         "Description[ca@valencia]": "Importa i edita projectes de Meson",
         "Description[ca]": "Importa i edita projectes del Meson",
@@ -30,11 +31,11 @@
         "Description[sv]": "Importerar och redigerar Meson-projekt",
         "Description[tr]": "Meson projelerini içe aktarır ve düzenler",
         "Description[uk]": "Імпортує і дає змогу редагувати проєкти Meson",
-        "Description[x-test]": "xxImports and edits Meson projectsxx",
         "Description[zh_CN]": "导入并编辑 Meson 工程",
         "Description[zh_TW]": "匯入並編輯 Meson 專案",
         "Icon": "run-build",
         "Name": "Meson Project Manager",
+        "Name[ar]": "مدير مشاريع Meson",
         "Name[az]": "Meson layihəsi meneceri",
         "Name[ca@valencia]": "Gestor de projectes Meson",
         "Name[ca]": "Gestor de projectes Meson",
@@ -63,7 +64,6 @@
         "Name[sv]": "Meson projekthanterare",
         "Name[tr]": "Meson Projesi Yöneticisi",
         "Name[uk]": "Керування проєктами Meson",
-        "Name[x-test]": "xxMeson Project Managerxx",
         "Name[zh_CN]": "Meson 工程管理器",
         "Name[zh_TW]": "Meson 專案管理員"
     },

@@ -1,6 +1,7 @@
 # KDE Config File
 [General]
 Name=CMake C
+Name[ar]=سي مع سي ميك
 Name[az]=CMake C
 Name[ca]=CMake C
 Name[ca@valencia]=CMake C
@@ -29,10 +30,10 @@ Name[sl]=CMake C
 Name[sv]=CMake C
 Name[tr]=CMake C
 Name[uk]=CMake C
-Name[x-test]=xxCMake Cxx
 Name[zh_CN]=CMake C
 Name[zh_TW]=CMake C
 Comment=Simple CMake-based C application
+Comment[ar]=تطبيق سي مبنيّ على سي ميك بسيط
 Comment[az]=Sadə CMake əsaslı C tətbiqi
 Comment[ca]=Aplicació senzilla en C basada en CMake
 Comment[ca@valencia]=Aplicació senzilla en C basada en CMake
@@ -61,7 +62,6 @@ Comment[sl]=Preprost program v C, temelječ na CMake
 Comment[sv]=Enkelt CMake-baserat C-program
 Comment[tr]=Yalın bir CMake tabanlı C uygulaması
 Comment[uk]=Проста заснована на CMake програма C
-Comment[x-test]=xxSimple CMake-based C applicationxx
 Comment[zh_CN]=基于 CMake 的简单 C 应用程序
 Comment[zh_TW]=使用 CMake 的簡單 C 應用程式
 Category=Standard/Terminal

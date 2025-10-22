@@ -21,10 +21,12 @@
 #include <KLocalizedString>
 
 #include <interfaces/icore.h>
+#include <interfaces/iproject.h>
 #include <interfaces/iprojectcontroller.h>
 #include <project/projectmodel.h>
 #include <util/kdevstringhandler.h>
-#include <interfaces/iproject.h>
+#include <util/shellutils.h>
+
 #include "projectproxymodel.h"
 
 constexpr QChar sep = QLatin1Char('/');
@@ -167,9 +169,12 @@ ProjectItemLineEdit::~ProjectItemLineEdit() = default;
 
 void ProjectItemLineEdit::showCtxMenu(const QPoint& p)
 {
-    QScopedPointer<QMenu> menu(createStandardContextMenu());
+    auto* menu = createStandardContextMenu();
+    KDevelop::prepareStandardContextMenuToAddingCustomActions(menu, this);
     menu->addActions(actions());
-    menu->exec(mapToGlobal(p));
+
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->popup(mapToGlobal(p));
 }
 
 bool ProjectItemLineEdit::selectItemDialog()

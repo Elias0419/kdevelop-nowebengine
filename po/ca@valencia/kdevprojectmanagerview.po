@@ -3,9 +3,9 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009, 2010.
-# Josep M. Ferrer <txemaq@gmail.com>, 2010, 2012, 2013, 2014, 2015, 2016, 2017, 2020.
-# Antoni Bella Pérez <antonibella5@yahoo.com>, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021.
+# SPDX-FileCopyrightText: 2009, 2010 Manuel Tortosa Moreno <manutortosa@gmail.com>
+# SPDX-FileCopyrightText: 2010, 2012, 2013, 2014, 2015, 2016, 2017, 2020 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdevelop\n"
@@ -182,19 +182,19 @@ msgstr "Ubica el document actual"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Locates the current document in the project tree and selects it."
-msgstr "Ubica el document actual en l'arbre de projecte i selecciona'l."
+msgstr "Ubica el document actual en l'arbre de projecte i tria'l."
 
 #: projectmanagerview.cpp:100
 #, kde-format
 msgctxt "@action"
 msgid "Auto-Select Current Document"
-msgstr "Selecciona automàticament el document actual"
+msgstr "Tria automàticament el document actual"
 
 #: projectmanagerview.cpp:101
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Automatically select the current document in the project tree."
-msgstr "Selecciona automàticament el document actual en l'arbre de projecte."
+msgstr "Tria automàticament el document actual en l'arbre de projecte."
 
 #: projectmanagerview.cpp:123
 #, kde-format

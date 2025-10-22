@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2012 Ivan Shapovalov <intelfx100@gmail.com>
+    SPDX-FileCopyrightText: 2024, 2025 Igor Kushnir <igorkuo@gmail.com>
 
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
@@ -8,13 +9,16 @@
 #define SHELLUTILS_H
 
 #include "utilexport.h"
-#include <QList>
-#include <QString>
 
+#include <QList>
+#include <QStringList>
+
+class QMenu;
 class QUrl;
 class QWidget;
 
 namespace KDevelop {
+class ILaunchConfiguration;
 
 /**
 * Asks user of an arbitrary question by using either a \ref KMessageBox or stdin/stderr.
@@ -49,6 +53,68 @@ bool KDEVPLATFORMUTIL_EXPORT ensureWritable(const QList<QUrl>& urls);
  */
 bool KDEVPLATFORMUTIL_EXPORT restoreAndAutoSaveGeometry(QWidget& widget, const QString& configGroupName,
                                                         const QString& configSubgroupName = QString{});
-}
+
+/**
+ * Prepare a QMenu pointer returned from createStandardContextMenu() to adding custom actions into the menu.
+ *
+ * The member function createStandardContextMenu() of a widget such as QTextEdit may return @c nullptr, in
+ * which case this function assigns @c new QMenu(@p menuParent) to @p standardContextMenu.
+ *
+ * If @p standardContextMenu is not empty, this function adds a separator to the menu.
+ *
+ * @param[in,out] standardContextMenu a pointer returned from createStandardContextMenu()
+ * @param menuParent the parent widget for the possible new context menu, this should be the widget on which
+ *        createStandardContextMenu() was invoked so that the parent of the displayed menu is always the same
+ */
+void KDEVPLATFORMUTIL_EXPORT prepareStandardContextMenuToAddingCustomActions(QMenu*& standardContextMenu,
+                                                                             QWidget* menuParent);
+
+struct KDEVPLATFORMUTIL_EXPORT LaunchConfigurationEntryName
+{
+    const char* untranslatable = nullptr; ///< the entry name to be printed via qCDebug/qCWarning
+    QString translatable; ///< the entry name to be displayed as part of an error message in the UI
+};
+
+/**
+ * Split a given text of a launch configuration entry according to system shell word splitting and quoting rules.
+ *
+ * @param launchConfiguration the launch configuration from whose config the entry text has been read
+ * @param entryText the text of the launch configuration entry to be split
+ * @param entryName the name of the launch configuration entry to be split
+ * @param[out] errorMessage if the splitting fails, an explaining error message text is assigned
+ *                          to this parameter; otherwise the parameter remains untouched
+ * @return the list, to which the entry text has been split, or an empty list in case of an error
+ */
+QStringList KDEVPLATFORMUTIL_EXPORT splitLaunchConfigurationEntry(const ILaunchConfiguration& launchConfiguration,
+                                                                  const QString& entryText,
+                                                                  const LaunchConfigurationEntryName& entryName,
+                                                                  QString& errorMessage);
+
+/**
+ * Split a given text of a launch configuration entry according to system shell word splitting and quoting rules.
+ *
+ * Unlike splitLaunchConfigurationEntry(), this function treats and reports
+ * as errors an empty entry text and an empty list result of the splitting.
+ *
+ * @sa splitLaunchConfigurationEntry()
+ */
+QStringList KDEVPLATFORMUTIL_EXPORT
+splitNonemptyLaunchConfigurationEntry(const ILaunchConfiguration& launchConfiguration, const QString& entryText,
+                                      const LaunchConfigurationEntryName& entryName, QString& errorMessage);
+
+/**
+ * Split the local file path of a given launch configuration URL
+ * entry according to system shell word splitting and quoting rules.
+ *
+ * This function treats and reports as errors an empty URL, an URL that does
+ * not point to a local file path, and an empty list result of the splitting.
+ *
+ * @sa splitLaunchConfigurationEntry()
+ */
+QStringList KDEVPLATFORMUTIL_EXPORT
+splitLocalFileLaunchConfigurationEntry(const ILaunchConfiguration& launchConfiguration, const QUrl& entryUrl,
+                                       const LaunchConfigurationEntryName& entryName, QString& errorMessage);
+
+} // namespace KDevelop
 
 #endif // SHELLUTILS_H

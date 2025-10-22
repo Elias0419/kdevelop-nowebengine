@@ -3,15 +3,15 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009, 2010.
-# Antoni Bella Pérez <antonibella5@yahoo.com>, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
+# SPDX-FileCopyrightText: 2009, 2010 Manuel Tortosa Moreno <manutortosa@gmail.com>
+# SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021 Antoni Bella Pérez <antonibella5@yahoo.com>
 # SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdevelop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-07 18:28+0000\n"
-"PO-Revision-Date: 2025-07-23 22:53+0200\n"
+"POT-Creation-Date: 2025-10-09 00:41+0000\n"
+"PO-Revision-Date: 2025-09-07 10:34+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 25.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1643,28 +1643,28 @@ msgctxt "project name (branch name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: project/projectitemlineedit.cpp:156
+#: project/projectitemlineedit.cpp:158
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter the path to an item from the projects tree..."
 msgstr "Introduïu el camí cap a un element de l'arbre de projectes…"
 
-#: project/projectitemlineedit.cpp:158
+#: project/projectitemlineedit.cpp:160
 #, kde-format
 msgctxt "@action"
 msgid "Select..."
-msgstr "Selecciona…"
+msgstr "Tria…"
 
-#: project/projectitemlineedit.cpp:182
+#: project/projectitemlineedit.cpp:187
 #, kde-format
 msgctxt "@title:window"
 msgid "Select an Item"
-msgstr "Seleccioneu un element"
+msgstr "Trieu un element"
 
-#: project/projectitemlineedit.cpp:192
+#: project/projectitemlineedit.cpp:197
 #, kde-format
 msgid "Select the item you want to get the path from."
-msgstr "Seleccioneu l'element del qual voleu obtindre el camí."
+msgstr "Trieu l'element del qual voleu obtindre el camí."
 
 #. i18n: ectx: property (toolTip), widget (ProjectItemLineEdit, targetDependency)
 #: project/widgets/dependencieswidget.ui:32
@@ -2459,8 +2459,8 @@ msgid ""
 "<i>Select a configuration to edit from the left,<br>or click the \"Add\" "
 "button to add a new one.</i>"
 msgstr ""
-"<i>Seleccioneu una configuració de l'esquerra per a editar-la,<br>o cliqueu "
-"damunt del botó «Afig» per a afegir-ne una de nova.</i>"
+"<i>Trieu una configuració de l'esquerra per a editar-la,<br>o cliqueu damunt "
+"del botó «Afig» per a afegir-ne una de nova.</i>"
 
 #: shell/launchconfigurationdialog.cpp:437
 #, kde-format
@@ -2786,7 +2786,7 @@ msgstr "Tots els fitxers de projecte"
 #, kde-format
 msgctxt "@title:tab"
 msgid "Select Source"
-msgstr "Seleccioneu l'origen"
+msgstr "Trieu l'origen"
 
 #: shell/openprojectdialog.cpp:149
 #, kde-format
@@ -2794,9 +2794,8 @@ msgid ""
 "Select a build system setup file, existing KDevelop project, or any folder "
 "to open as a project"
 msgstr ""
-"Seleccioneu un fitxer de configuració del sistema de construcció, un "
-"projecte de KDevelop existent o qualsevol carpeta per a obrir-lo/a com a "
-"projecte"
+"Trieu un fitxer de configuració del sistema de construcció, un projecte de "
+"KDevelop existent o qualsevol carpeta per a obrir-lo/a com a projecte"
 
 #: shell/openprojectdialog.cpp:156 shell/openprojectdialog.cpp:177
 #, kde-format
@@ -3266,7 +3265,7 @@ msgstr "Torna a analitzar el projecte sencer"
 msgctxt "@info:tooltip"
 msgid "Select the Management Plugin to use for this project"
 msgstr ""
-"Seleccioneu un connector de gestió que s'haja d'utilitzar per a este projecte"
+"Trieu un connector de gestió que s'haja d'utilitzar per a este projecte"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: shell/projectinfopage.ui:32
@@ -3352,7 +3351,7 @@ msgstr "Directori:"
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Select the directory to use..."
-msgstr "Seleccioneu el directori que s'ha d'utilitzar…"
+msgstr "Tria el directori que s'ha d'utilitzar…"
 
 #. i18n: ectx: property (title), widget (QGroupBox, sourceBox)
 #: shell/projectsourcepage.ui:78
@@ -3517,8 +3516,7 @@ msgstr "Configuració de llançament actual"
 msgctxt "@info:whatsthis"
 msgid "Select which launch configuration to run when run is invoked."
 msgstr ""
-"Seleccioneu quina configuració de llançament s'ha d'executar en invocar "
-"l'execució."
+"Trieu quina configuració de llançament s'ha d'executar en invocar l'execució."
 
 #: shell/runcontroller.cpp:623
 #, kde-format
@@ -3590,7 +3588,7 @@ msgstr "Suprimix la sessió"
 #, kde-format
 msgctxt "@title:window"
 msgid "Pick a Session"
-msgstr "Seleccioneu una sessió"
+msgstr "Trieu una sessió"
 
 #: shell/sessionchooserdialog.cpp:62
 #, kde-format
@@ -3811,8 +3809,8 @@ msgid ""
 "<p>Please, close the offending application instance or choose another "
 "session to launch.</p>"
 msgstr ""
-"<p>Tanqueu la instància de l'aplicació no desitjada o seleccioneu una altra "
-"sessió a iniciar.</p>"
+"<p>Tanqueu la instància de l'aplicació no desitjada o trieu una altra sessió "
+"a iniciar.</p>"
 
 #: shell/sessionlock.cpp:188
 #, kde-format
@@ -3824,7 +3822,7 @@ msgstr "Torna a intentar l'inici"
 #, kde-format
 msgctxt "@action:button"
 msgid "Choose Another Session"
-msgstr "Seleccioneu una altra sessió"
+msgstr "Trieu una altra sessió"
 
 #: shell/sessionlock.cpp:195
 #, kde-format
@@ -3907,7 +3905,7 @@ msgid ""
 "unsure, select 1 or 2."
 msgstr ""
 "El nombre màxim d'instàncies paral·leles que utilitza l'analitzador en segon "
-"pla. Si no esteu segur, seleccioneu 1 o 2."
+"pla. Si no esteu segur, trieu 1 o 2."
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: shell/settings/bgpreferences.ui:64
@@ -4099,8 +4097,8 @@ msgid ""
 "Choose whether to display additional information for the currently selected "
 "codecompletion item."
 msgstr ""
-"Seleccioneu si mostrar la informació addicional per a l'element de compleció "
-"de codi actualment seleccionat."
+"Trieu si mostrar la informació addicional per a l'element de compleció de "
+"codi actualment seleccionat."
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: shell/settings/languagepreferences.ui:61
@@ -4117,8 +4115,8 @@ msgid ""
 "Choose whether to display additional information for the currently selected "
 "code completion item."
 msgstr ""
-"Seleccioneu si mostrar la informació addicional per a l'element de compleció "
-"de codi actualment seleccionat."
+"Trieu si mostrar la informació addicional per a l'element de compleció de "
+"codi actualment seleccionat."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, label)
 #. i18n: ectx: property (toolTip), widget (QComboBox, kcfg_completionDetail)
@@ -4129,9 +4127,8 @@ msgid ""
 "<p>The code completion UI has a minimal mode and a detailed mode.<br>Choose "
 "in what cases full code completion will be displayed.</p>"
 msgstr ""
-"<p>La IU de compleció de codi té un mode mínim i un mode detallat."
-"<br>Seleccioneu els casos en què es mostrarà la compleció de codi completa.</"
-"p>"
+"<p>La IU de compleció de codi té un mode mínim i un mode detallat.<br>Trieu "
+"els casos en què es mostrarà la compleció de codi completa.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: shell/settings/languagepreferences.ui:84
@@ -4557,7 +4554,7 @@ msgstr ""
 #: shell/settings/projectconfig.kcfg:19
 #, kde-format
 msgid "Chooses the base directory where new projects are created."
-msgstr "Seleccioneu el directori base on es crearan els projectes nous."
+msgstr "Trieu el directori base on es crearan els projectes nous."
 
 #. i18n: ectx: label, entry (saveDocuments), group (Project Manager)
 #: shell/settings/projectconfig.kcfg:23
@@ -4592,7 +4589,7 @@ msgstr "Configura els projectes"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select the base directory where new projects are to be created"
-msgstr "Seleccioneu el directori base on es crearan els projectes nous"
+msgstr "Trieu el directori base on es crearan els projectes nous"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: shell/settings/projectpreferences.ui:25
@@ -5097,7 +5094,7 @@ msgid ""
 "project. This occurs because source formatter maps MIME types to languages.</"
 "p>"
 msgstr ""
-"<p>Seleccioneu els llenguatges que utilitzeu un a un des del quadro combinat "
+"<p>Trieu els llenguatges que utilitzeu un a un des del quadro combinat "
 "<i>Llenguatge</i> de davall, trieu el formatador i l'estil desitjats per a "
 "cadascuna. Feu <i>Ctrl+clic</i> en un estil seleccionat per a desseleccionar-"
 "lo.</p>\n"
@@ -5201,7 +5198,7 @@ msgstr "Revisió"
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Tool View to Add"
-msgstr "Seleccioneu la vista d'eina que s'ha d'afegir"
+msgstr "Trieu la vista d'eina que s'ha d'afegir"
 
 #: shell/workingsets/workingsettooltipwidget.cpp:75
 #, kde-format
@@ -5364,56 +5361,56 @@ msgstr "Barra de botons dreta"
 msgid "Bottom Button Bar"
 msgstr "Barra de botons inferior"
 
-#: sublime/idealdockwidget.cpp:123
+#: sublime/idealdockwidget.cpp:121
 #, kde-format
 msgctxt "@title:menu"
 msgid "Tool View Position"
 msgstr "Posició de la vista d'eina"
 
-#: sublime/idealdockwidget.cpp:127
+#: sublime/idealdockwidget.cpp:125
 #, kde-format
 msgctxt "@option:radio tool view position"
 msgid "Left"
 msgstr "Esquerra"
 
-#: sublime/idealdockwidget.cpp:128
+#: sublime/idealdockwidget.cpp:126
 #, kde-format
 msgctxt "@option:radio tool view position"
 msgid "Bottom"
 msgstr "Inferior"
 
-#: sublime/idealdockwidget.cpp:129
+#: sublime/idealdockwidget.cpp:127
 #, kde-format
 msgctxt "@option:radio tool view position"
 msgid "Right"
 msgstr "Dreta"
 
-#: sublime/idealdockwidget.cpp:130
+#: sublime/idealdockwidget.cpp:128
 #, kde-format
 msgctxt "@option:radio tool view position"
 msgid "Detached"
 msgstr "Separada"
 
-#: sublime/idealdockwidget.cpp:152
+#: sublime/idealdockwidget.cpp:150
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Assign Shortcut..."
 msgstr "Assigna una drecera…"
 
-#: sublime/idealdockwidget.cpp:153
+#: sublime/idealdockwidget.cpp:151
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Use this shortcut to trigger visibility of the tool view."
 msgstr ""
 "Utilitzeu esta drecera per a activar la visibilitat de la vista d'eina."
 
-#: sublime/idealdockwidget.cpp:156
+#: sublime/idealdockwidget.cpp:154
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Remove Tool View"
 msgstr "Elimina la vista d'eina"
 
-#: sublime/idealdockwidget.cpp:167
+#: sublime/idealdockwidget.cpp:166
 #, kde-format
 msgctxt "@title:window"
 msgid "Assign Shortcut For '%1' Tool View"
@@ -5633,7 +5630,7 @@ msgstr "La tasca s'ha interromput"
 msgid "Run all tests in %1"
 msgstr "Executa totes les proves a %1"
 
-#: util/shellutils.cpp:171
+#: util/shellutils.cpp:175
 #, kde-format
 msgid ""
 "You don't have write permissions for the following files; add write "
@@ -5642,34 +5639,103 @@ msgstr ""
 "No teniu permisos d'escriptura per als fitxers següents. Voleu afegir "
 "permisos d'escriptura per al propietari abans de guardar?"
 
-#: util/shellutils.cpp:174
+#: util/shellutils.cpp:178
 #, kde-format
 msgctxt "@title:window"
 msgid "Some Files are Write-Protected"
 msgstr "Alguns fitxers estan protegits contra escriptura"
 
-#: util/shellutils.cpp:175
+#: util/shellutils.cpp:179
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Write Permissions"
 msgstr "Establix els permisos d'escriptura"
 
-#: util/shellutils.cpp:176
+#: util/shellutils.cpp:180
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr "Ignora"
 
-#: util/shellutils.cpp:188
+#: util/shellutils.cpp:192
 #, kde-format
 msgid "Failed adding write permissions for some files."
 msgstr "No s'ha pogut afegir permisos d'escriptura per a alguns fitxers."
 
-#: util/shellutils.cpp:189
+#: util/shellutils.cpp:193
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed Setting Permissions"
 msgstr "No s'han pogut establir els permisos"
+
+#: util/shellutils.cpp:232
+#, kde-format
+msgctxt ""
+"%1 - entry name, e.g. 'arguments' or 'executable path'; %2 - launch "
+"configuration name"
+msgid ""
+"There is a quoting error in the %1 for the launch configuration '%2'. "
+"Aborting start."
+msgstr ""
+"S'ha produït un error de cometes a la %1 de la configuració del llançament "
+"«%2». S'interromp l'inici."
+
+#: util/shellutils.cpp:238
+#, kde-format
+msgctxt ""
+"%1 - entry name, e.g. 'arguments' or 'executable path'; %2 - launch "
+"configuration name"
+msgid ""
+"A shell meta character was included in the %1 for the launch configuration "
+"'%2', this is not supported currently. Aborting start."
+msgstr ""
+"S'ha inclòs un metacaràcter de l'intèrpret d'ordres a %1 a la configuració "
+"de llançament «%2», el qual actualment no s'admet. S'interromp l'inici."
+
+#: util/shellutils.cpp:247
+#, kde-format
+msgctxt ""
+"%1 - entry name, e.g. 'arguments' or 'executable path'; %2 - error code; %3 "
+"- launch configuration name"
+msgid ""
+"KShell::splitArgs(<the %1>) reported an unknown error code %2 for the launch "
+"configuration '%3'. Aborting start."
+msgstr ""
+"KShell::splitArgs(<the %1>) ha informat d'un codi d'error desconegut %2 a la "
+"configuració de llançament «%3». S'interromp l'inici."
+
+#: util/shellutils.cpp:274
+#, kde-format
+msgctxt ""
+"%1 - entry name, e.g. 'executable path' or 'external terminal command'; %2 - "
+"launch configuration name"
+msgid ""
+"Splitting the %1 for the launch configuration '%2' yields an empty list. "
+"Aborting start."
+msgstr ""
+"En dividir %1 a la configuració de llançament «%2» s'obté una llista buida. "
+"S'interromp l'inici."
+
+#: util/shellutils.cpp:291
+#, kde-format
+msgctxt ""
+"%1 - entry name, e.g. 'external terminal command' or 'interpreter command'; "
+"%2 - launch configuration name"
+msgid "Empty %1 specified for the launch configuration '%2'. Aborting start."
+msgstr ""
+"S'ha especificat un %1 buit a la configuració de llançament «%2». "
+"S'interromp l'inici."
+
+#: util/shellutils.cpp:306
+#, kde-format
+msgctxt ""
+"%1 - entry name, e.g. 'executable path' or 'script path'; %2 - launch "
+"configuration name"
+msgid ""
+"No valid %1 specified for the launch configuration '%2'. Aborting start."
+msgstr ""
+"S'ha especificat un %1 no vàlid a la configuració de llançament «%2». "
+"S'interromp l'inici."
 
 #: vcs/dvcs/dvcsjob.cpp:166
 #, kde-format
@@ -5743,7 +5809,7 @@ msgid ""
 "Please, choose another name."
 msgstr ""
 "La branca «%1» ja existix.\n"
-"Seleccioneu un altre nom."
+"Trieu un altre nom."
 
 #: vcs/dvcs/ui/branchmanager.cpp:140
 #, kde-format
@@ -5771,7 +5837,7 @@ msgid ""
 "Please, choose another name."
 msgstr ""
 "La branca «%1» no existix.\n"
-"Seleccioneu un altre nom."
+"Trieu un altre nom."
 
 #: vcs/dvcs/ui/branchmanager.cpp:196
 #, kde-format
@@ -6202,7 +6268,7 @@ msgstr "Per: %1"
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Files to Commit"
-msgstr "Seleccioneu els fitxers a cometre"
+msgstr "Trieu els fitxers que s'han de cometre"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: vcs/widgets/vcscommitdialog.ui:23

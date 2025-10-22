@@ -1,5 +1,6 @@
 [KNewStuff3]
 Name=Application Templates (SDK)
+Name[ar]=قوالب التطبيقات (SDK)
 Name[az]=Tətbiq şablonları (SDK)
 Name[ca]=Plantilles d'aplicació (SDK)
 Name[ca@valencia]=Plantilles d'aplicació (SDK)
@@ -29,7 +30,6 @@ Name[sl]=Predloge programov (SDK)
 Name[sv]=Programmallar (SDK)
 Name[tr]=Uygulama Şablonları (SDK)
 Name[uk]=Шаблони програм (SDK)
-Name[x-test]=xxApplication Templates (SDK)xx
 Name[zh_CN]=应用程序模板 (SDK)
 Name[zh_TW]=應用程式範本 (SDK)
 

@@ -4,6 +4,7 @@
             {
                 "Email": "sebas@kde.org",
                 "Name": "Sebastian Kügler",
+                "Name[ar]": "سيباستيان كوغلر",
                 "Name[ca@valencia]": "Sebastian Kügler",
                 "Name[ca]": "Sebastian Kügler",
                 "Name[cs]": "Sebastian Kügler",
@@ -26,12 +27,12 @@
                 "Name[sv]": "Sebastian Kügler",
                 "Name[tr]": "Sebastian Kügler",
                 "Name[uk]": "Sebastian Kügler",
-                "Name[x-test]": "xxSebastian Küglerxx",
                 "Name[zh_CN]": "Sebastian Kügler",
                 "Name[zh_TW]": "Sebastian Kügler"
             }
         ],
         "Description": "Matches KDevelop Sessions",
+        "Description[ar]": "طابِق جلسات مطوّرك",
         "Description[ca@valencia]": "Coincidix amb sessions de KDevelop",
         "Description[ca]": "Concorda amb sessions del KDevelop",
         "Description[en_GB]": "Matches KDevelop Sessions",
@@ -52,13 +53,13 @@
         "Description[sv]": "Matchar KDevelop-sessioner",
         "Description[tr]": "K Geliştir oturumlarıyla eşleşir",
         "Description[uk]": "Пошук відповідних сеансів KDevelop",
-        "Description[x-test]": "xxMatches KDevelop Sessionsxx",
         "Description[zh_CN]": "匹配 KDevelop 会话",
         "Description[zh_TW]": "比對 KDevelop 工作階段",
         "EnabledByDefault": true,
         "Icon": "kdevelop",
         "License": "LGPL",
         "Name": "KDevelop Sessions",
+        "Name[ar]": "جلسات مطوّرك",
         "Name[ca@valencia]": "Sessions de KDevelop",
         "Name[ca]": "Sessions del KDevelop",
         "Name[cs]": "Sezení KDevelop",
@@ -80,7 +81,6 @@
         "Name[sv]": "KDevelop-sessioner",
         "Name[tr]": "K Geliştir Oturumları",
         "Name[uk]": "Сеанси KDevelop",
-        "Name[x-test]": "xxKDevelop Sessionsxx",
         "Name[zh_CN]": "KDevelop 会话",
         "Name[zh_TW]": "KDevelop 工作階段"
     }

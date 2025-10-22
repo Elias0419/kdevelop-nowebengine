@@ -1,0 +1,48 @@
+# Copyright (C) 2025 This file is copyright:
+# This file is distributed under the same license as the kdevelop package.
+# SPDX-FileCopyrightText: 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdevelop\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-11-05 12:28+0000\n"
+"PO-Revision-Date: 2025-10-05 16:31+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Lokalize 23.08.5\n"
+
+#: kdevdocumentview.cpp:64
+#, kde-format
+msgid "Documents"
+msgstr "المستندات"
+
+#: kdevdocumentview.cpp:67 kdevdocumentviewplugin.cpp:77
+#, kde-format
+msgctxt "@title:window"
+msgid "Documents"
+msgstr "المستندات"
+
+#: kdevdocumentview.cpp:211
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Reload"
+msgstr "أعد التحميل"
+
+#: kdevdocumentview.cpp:217
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close"
+msgstr "أغلق"
+
+#: kdevdocumentview.cpp:218
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Other"
+msgstr "أغلق كلّ الأخرى"

@@ -13,6 +13,7 @@
 
 #include <interfaces/icore.h>
 #include <interfaces/idebugcontroller.h>
+#include <util/shellutils.h>
 
 #include <KLocalizedString>
 
@@ -20,10 +21,12 @@
 #include <Okteta/ByteArrayModel>
 
 #include <QAction>
+#include <QActionGroup>
 #include <QContextMenuEvent>
-#include <QFormLayout>
-#include <QLineEdit>
 #include <QDialogButtonBox>
+#include <QFormLayout>
+#include <QIcon>
+#include <QLineEdit>
 #include <QMenu>
 #include <QPushButton>
 #include <QToolBox>
@@ -87,39 +90,34 @@ class MemoryRangeSelector : public QWidget
 };
 
 MemoryView::MemoryView(QWidget* parent)
-: QWidget(parent),
-    // New memory view can be created only when debugger is active,
-    // so don't set s_appNotStarted here.
-    m_memViewView(nullptr),
-    m_debuggerState(0)
+    : QWidget(parent)
 {
     setWindowTitle(i18nc("@title:window", "Memory View"));
 
     initWidget();
-
-    if (isOk())
-        slotEnableOrDisable();
 
     auto debugController = KDevelop::ICore::self()->debugController();
     Q_ASSERT(debugController);
 
     connect(debugController, &KDevelop::IDebugController::currentSessionChanged,
             this, &MemoryView::currentSessionChanged);
+    currentSessionChanged(debugController->currentSession());
 }
 
 void MemoryView::currentSessionChanged(KDevelop::IDebugSession* s)
 {
     auto *session = qobject_cast<DebugSession*>(s);
-    if (!session) return;
+    if (!session) {
+        m_appHasStarted = false;
+        enableOrDisable();
+        return;
+    }
 
-    connect(session, &DebugSession::debuggerStateChanged,
-             this, &MemoryView::slotStateChanged);
-}
-
-void MemoryView::slotStateChanged(DBGStateFlags oldState, DBGStateFlags newState)
-{
-    Q_UNUSED(oldState);
-    debuggerStateChanged(newState);
+    connect(session, &DebugSession::debuggerStateChanged, this, [this](DBGStateFlags oldState, DBGStateFlags newState) {
+        Q_UNUSED(oldState);
+        debuggerStateChanged(newState);
+    });
+    debuggerStateChanged(session->debuggerState());
 }
 
 void MemoryView::initWidget()
@@ -147,44 +145,31 @@ void MemoryView::initWidget()
     m_memViewView->setShowsNonprinting(false);
     m_memViewView->setSubstituteChar(QLatin1Char('*'));
 
+    m_memViewView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_memViewView, &QWidget::customContextMenuRequested, this, &MemoryView::memoryViewContextMenuRequested);
+
     m_rangeSelector = new MemoryRangeSelector(this);
     l->addWidget(m_rangeSelector);
 
-    connect(m_rangeSelector->okButton, &QPushButton::clicked,
-            this, &MemoryView::slotChangeMemoryRange);
-
-    connect(m_rangeSelector->cancelButton, &QPushButton::clicked,
-            this, &MemoryView::slotHideRangeDialog);
-
-    connect(m_rangeSelector->startAddressLineEdit,
-            &QLineEdit::textChanged,
-            this,
-            &MemoryView::slotEnableOrDisable);
-
-    connect(m_rangeSelector->amountLineEdit,
-            &QLineEdit::textChanged,
-            this,
-            &MemoryView::slotEnableOrDisable);
+    connect(m_rangeSelector->okButton, &QPushButton::clicked, this, &MemoryView::changeMemoryRange);
+    connect(m_rangeSelector->cancelButton, &QPushButton::clicked, this, &MemoryView::hideRangeDialog);
+    connect(m_rangeSelector->startAddressLineEdit, &QLineEdit::textChanged, this, &MemoryView::enableOrDisable);
 
     l->addWidget(m_memViewView);
 }
 
 void MemoryView::debuggerStateChanged(DBGStateFlags state)
 {
-    if (isOk())
-    {
-        m_debuggerState = state;
-        slotEnableOrDisable();
-    }
+    m_appHasStarted = !state.testFlag(s_appNotStarted);
+    enableOrDisable();
 }
 
-
-void MemoryView::slotHideRangeDialog()
+void MemoryView::hideRangeDialog()
 {
     m_rangeSelector->hide();
 }
 
-void MemoryView::slotChangeMemoryRange()
+void MemoryView::changeMemoryRange()
 {
     auto *session = qobject_cast<DebugSession*>(
         KDevelop::ICore::self()->debugController()->currentSession());
@@ -192,22 +177,23 @@ void MemoryView::slotChangeMemoryRange()
 
     QString amount = m_rangeSelector->amountLineEdit->text();
     if(amount.isEmpty())
-        amount = QStringLiteral("sizeof(%1)").arg(m_rangeSelector->startAddressLineEdit->text());
+        amount = QLatin1String{"sizeof(*%1)"}.arg(m_rangeSelector->startAddressLineEdit->text());
 
     session->addCommand(std::make_unique<MI::ExpressionValueCommand>(amount, this, &MemoryView::sizeComputed));
 }
 
 void MemoryView::sizeComputed(const QString& size)
 {
+    addReadMemoryCommand(QLatin1String{"%1 x 1 1 %2"}.arg(m_rangeSelector->startAddressLineEdit->text(), size));
+}
+
+void MemoryView::addReadMemoryCommand(const QString& arguments)
+{
     auto *session = qobject_cast<DebugSession*>(
         KDevelop::ICore::self()->debugController()->currentSession());
     if (!session) return;
 
-    session->addCommand(MI::DataReadMemory,
-            QStringLiteral("%1 x 1 1 %2")
-                .arg(m_rangeSelector->startAddressLineEdit->text(), size),
-            this,
-            &MemoryView::memoryRead);
+    session->addCommand(MI::DataReadMemory, arguments, this, &MemoryView::memoryRead);
 }
 
 void MemoryView::memoryRead(const MI::ResultRecord& r)
@@ -230,7 +216,7 @@ void MemoryView::memoryRead(const MI::ResultRecord& r)
 
     m_memViewModel->setData(reinterpret_cast<Okteta::Byte*>(m_memData.data()), m_memData.size());
 
-    slotHideRangeDialog();
+    hideRangeDialog();
 }
 
 
@@ -240,8 +226,7 @@ void MemoryView::memoryEdited(int start, int end)
         KDevelop::ICore::self()->debugController()->currentSession());
     if (!session) return;
 
-    for(int i = start; i <= end; ++i)
-    {
+    for (auto i = start; i < end; ++i) {
         session->addCommand(MI::GdbSet,
                 QStringLiteral("*(char*)(%1 + %2) = %3")
                     .arg(m_memStart)
@@ -250,25 +235,31 @@ void MemoryView::memoryEdited(int start, int end)
     }
 }
 
+void MemoryView::memoryViewContextMenuRequested(const QPoint& viewportPosition)
+{
+    // Add our actions also to the context menu of m_memViewView because MemoryView's
+    // own context menu is difficult to trigger when the range selector is hidden.
+    auto* menu = m_memViewView->createStandardContextMenu(viewportPosition);
+    KDevelop::prepareStandardContextMenuToAddingCustomActions(menu, m_memViewView);
+    addActionsAndShowContextMenu(menu, m_memViewView->viewport()->mapToGlobal(viewportPosition));
+}
+
 void MemoryView::contextMenuEvent(QContextMenuEvent *e)
 {
-    if (!isOk())
-        return;
+    addActionsAndShowContextMenu(new QMenu(this), e->globalPos());
+}
 
-    QMenu menu(this);
-
-    bool app_running = !(m_debuggerState & s_appNotStarted);
-
-    QAction* reload = menu.addAction(i18nc("@action::inmenu", "&Reload"));
+void MemoryView::addActionsAndShowContextMenu(QMenu* menu, const QPoint& globalPosition)
+{
+    auto* const reload = menu->addAction(i18nc("@action::inmenu", "&Reload"));
     reload->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
-    reload->setEnabled(app_running && !m_memData.isEmpty() );
+    reload->setEnabled(m_appHasStarted && !m_memData.isEmpty());
 
     QActionGroup* formatGroup = nullptr;
     QActionGroup* groupingGroup = nullptr;
-    if (m_memViewModel && m_memViewView)
     {
         // make Format menu with action group
-        QMenu* formatMenu = menu.addMenu(i18nc("@title:menu", "&Format"));
+        auto* const formatMenu = menu->addMenu(i18nc("@title:menu", "&Format"));
         formatGroup = new QActionGroup(formatMenu);
 
         QAction *binary = formatGroup->addAction(i18nc("@item:inmenu display format", "&Binary"));
@@ -300,7 +291,7 @@ void MemoryView::contextMenuEvent(QContextMenuEvent *e)
 
 
         // make Grouping menu with action group
-        QMenu* groupingMenu = menu.addMenu(i18nc("@title:menu", "&Grouping"));
+        auto* const groupingMenu = menu->addMenu(i18nc("@title:menu", "&Grouping"));
         groupingGroup = new QActionGroup(groupingMenu);
 
         QAction *group0 = groupingGroup->addAction(i18nc("@item:inmenu no byte grouping", "&0"));
@@ -341,20 +332,19 @@ void MemoryView::contextMenuEvent(QContextMenuEvent *e)
         }
     }
 
-    QAction* write = menu.addAction(i18nc("@action:inmenu", "Write Changes"));
+    auto* const write = menu->addAction(i18nc("@action:inmenu", "Write Changes"));
     write->setIcon(QIcon::fromTheme(QStringLiteral("document-save")));
-    write->setEnabled(app_running && m_memViewView && m_memViewView->isModified());
+    write->setEnabled(m_appHasStarted && m_memViewView->isModified());
 
-    QAction* range = menu.addAction(i18nc("@action:inmenu", "Change Memory Range"));
-    range->setEnabled(app_running && !m_rangeSelector->isVisible());
+    auto* const range = menu->addAction(i18nc("@action:inmenu", "Change Memory Range"));
+    range->setEnabled(m_appHasStarted && !m_rangeSelector->isVisible());
     range->setIcon(QIcon::fromTheme(QStringLiteral("document-edit")));
 
-    QAction* close = menu.addAction(i18nc("@action:inmenu", "Close View"));
+    auto* const close = menu->addAction(i18nc("@action:inmenu", "Close View"));
     close->setIcon(QIcon::fromTheme(QStringLiteral("window-close")));
 
-
-    QAction* result = menu.exec(e->globalPos());
-
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    auto* const result = menu->exec(globalPosition);
 
     if (result == reload)
     {
@@ -362,14 +352,7 @@ void MemoryView::contextMenuEvent(QContextMenuEvent *e)
         // not textual m_memStartStr and m_memAmountStr,
         // because program position might have changes and expressions
         // are no longer valid.
-        auto *session = qobject_cast<DebugSession*>(
-            KDevelop::ICore::self()->debugController()->currentSession());
-        if (session) {
-            session->addCommand(MI::DataReadMemory,
-                    QStringLiteral("%1 x 1 1 %2").arg(m_memStart).arg(m_memData.size()),
-                    this,
-                    &MemoryView::memoryRead);
-        }
+        addReadMemoryCommand(QStringLiteral("%1 x 1 1 %2").arg(m_memStart).arg(m_memData.size()));
     }
 
     if (result && formatGroup && formatGroup == result->actionGroup())
@@ -397,18 +380,10 @@ void MemoryView::contextMenuEvent(QContextMenuEvent *e)
         deleteLater();
 }
 
-bool MemoryView::isOk() const
+void MemoryView::enableOrDisable()
 {
-    return m_memViewView;
-}
-
-void MemoryView::slotEnableOrDisable()
-{
-    bool app_started = !(m_debuggerState & s_appNotStarted);
-
-    bool enabled_ = app_started && !m_rangeSelector->startAddressLineEdit->text().isEmpty();
-
-    m_rangeSelector->okButton->setEnabled(enabled_);
+    const auto enable = m_appHasStarted && !m_rangeSelector->startAddressLineEdit->text().isEmpty();
+    m_rangeSelector->okButton->setEnabled(enable);
 }
 
 

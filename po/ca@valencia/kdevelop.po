@@ -2,11 +2,11 @@
 # Copyright (C) 2002-2025 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2 or later
 #
-# Albert Astals Cid <aacid@kde.org>, 2002, 2003, 2004, 2005.
-# Antoni Bella Pérez <antonibella5@yahoo.com>, 2003, 2005, 2006, 2007, 2013, 2014, 2015, 2016, 2017, 2018, 2020.
+# SPDX-FileCopyrightText: 2002, 2003, 2004, 2005 Albert Astals Cid <aacid@kde.org>
+# SPDX-FileCopyrightText: 2003, 2005, 2006, 2007, 2013, 2014, 2015, 2016, 2017, 2018, 2020 Antoni Bella Pérez <antonibella5@yahoo.com>
 # SPDX-FileCopyrightText: 2007, 2009, 2010, 2011, 2012, 2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2025 Josep M. Ferrer <txemaq@gmail.com>
-# Aleix Pol Gonzalez <aleixpol@gmail.com>, 2007.
-# Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009, 2010.
+# SPDX-FileCopyrightText: 2007 Aleix Pol Gonzalez <aleixpol@gmail.com>
+# SPDX-FileCopyrightText: 2009, 2010 Manuel Tortosa Moreno <manutortosa@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdevelop\n"
@@ -165,7 +165,7 @@ msgstr "No s'ha pogut obrir el projecte «%1»: %2"
 #: main.cpp:277
 #, kde-format
 msgid "Select the session to open the document in"
-msgstr "Seleccioneu la sessió on obrir el document"
+msgstr "Trieu la sessió on obrir el document"
 
 # skip-rule: rst-link0italic,rst-italic2
 #: main.cpp:304
@@ -861,7 +861,7 @@ msgstr "[en execució]"
 #: main.cpp:624
 #, kde-format
 msgid "Select the session you would like to use"
-msgstr "Seleccioneu la sessió que voleu utilitzar"
+msgstr "Trieu la sessió que voleu utilitzar"
 
 #: main.cpp:632
 #, kde-format

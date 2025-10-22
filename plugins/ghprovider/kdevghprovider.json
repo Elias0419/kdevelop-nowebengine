@@ -3,6 +3,7 @@
         "Authors": [
             {
                 "Name": "Miquel Sabaté",
+                "Name[ar]": "Miquel Sabaté",
                 "Name[az]": "Miquel Sabaté",
                 "Name[ca@valencia]": "Miquel Sabaté",
                 "Name[ca]": "Miquel Sabaté",
@@ -32,13 +33,13 @@
                 "Name[sv]": "Miquel Sabaté",
                 "Name[tr]": "Miquel Sabaté",
                 "Name[uk]": "Miquel Sabaté",
-                "Name[x-test]": "xxMiquel Sabatéxx",
                 "Name[zh_CN]": "Miquel Sabaté",
                 "Name[zh_TW]": "Miquel Sabaté"
             }
         ],
         "Category": "Utilities",
         "Description": "This plugin helps to obtain projects from GitHub",
+        "Description[ar]": "تساعد هذه الملحقة في الحصول على مشاريع من GitHub",
         "Description[az]": "Bu qoşma, GitHub'dan layihələri almağa kömək edir",
         "Description[ca@valencia]": "Este connector ajuda a obtindre els projectes des de GitHub",
         "Description[ca]": "Aquest connector ajuda a obtenir els projectes des de GitHub",
@@ -66,12 +67,12 @@
         "Description[sv]": "Insticksprogrammet hjälper till att erhålla projekt från Github",
         "Description[tr]": "Bu eklenti, Github’tan projeler almanıza yardımcı olur",
         "Description[uk]": "За допомогою цього додатка можна отримувати проєкти з GitHub",
-        "Description[x-test]": "xxThis plugin helps to obtain projects from GitHubxx",
         "Description[zh_CN]": "此插件帮助您从 GitHub 获取工程",
         "Description[zh_TW]": "這個外掛程式幫助您從 GitHub 取得專案",
         "Icon": "kdevgh",
         "License": "GPL",
         "Name": "GitHub Provider",
+        "Name[ar]": "موفّر GitHub",
         "Name[az]": "GitHub təminatçısı",
         "Name[ca@valencia]": "Proveïdor de GitHub",
         "Name[ca]": "Proveïdor de GitHub",
@@ -101,7 +102,6 @@
         "Name[sv]": "Github-leverantör",
         "Name[tr]": "GitHub Sağlayıcısı",
         "Name[uk]": "Надавач даних GitHub",
-        "Name[x-test]": "xxGitHub Providerxx",
         "Name[zh_CN]": "GitHub 提供者",
         "Name[zh_TW]": "GitHub 提供者"
     },

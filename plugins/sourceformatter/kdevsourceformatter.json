@@ -2,6 +2,7 @@
     "KPlugin": {
         "Category": "Utilities",
         "Description": "Configure which style should be used for formatting of the sourcecode in a project.",
+        "Description[ar]": "اضبط أيّ نمط يجب استخدامه لتنسيق الشِّفرة المصدريّة في المشروع.",
         "Description[az]": "Layihədəki qaynaq kodunun formatlanması üçün hansı üslubdan istifadə edilməli olduğunu tənzimləyin.",
         "Description[ca@valencia]": "Configura quin estil s'ha d'utilitzar per a donar format al codi font d'un projecte.",
         "Description[ca]": "Configura quin estil s'ha d'usar per a donar format al codi font d'un projecte.",
@@ -29,11 +30,11 @@
         "Description[sv]": "Anpassa vilken stil som ska användas för att formatera källkoden i ett projekt.",
         "Description[tr]": "Bir projedeki kaynak kodun biçimlendirilmesi için hangi biçemin kullanılması gerektiğini yapılandırın.",
         "Description[uk]": "Налаштувати стиль, який буде використано для форматування початкового коду у проєкті.",
-        "Description[x-test]": "xxConfigure which style should be used for formatting of the sourcecode in a project.xx",
         "Description[zh_CN]": "配置工程中源代码应使用哪个样式进行格式化。",
         "Description[zh_TW]": "設定格式化專案原始碼時要使用的風格。",
         "Icon": "text-field",
         "Name": "Source Formatter",
+        "Name[ar]": "منسّق المصادر",
         "Name[az]": "Mənbə formatlayıcı",
         "Name[bg]": "Форматиращ модул за програмен текст",
         "Name[ca@valencia]": "Formatador del codi font",
@@ -69,7 +70,6 @@
         "Name[tr]": "Kaynak Biçimlendiricisi",
         "Name[ug]": "مەنبەنى پىچقۇچ",
         "Name[uk]": "Форматування коду",
-        "Name[x-test]": "xxSource Formatterxx",
         "Name[zh_CN]": "源代码格式化器",
         "Name[zh_TW]": "源碼格式器"
     },
